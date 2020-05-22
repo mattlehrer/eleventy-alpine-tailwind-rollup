@@ -3,8 +3,9 @@ node_modules
 web_modules
 
 # build artefacts
+.build
+build
 dist
-src/_output
 
 # secrets
 .env

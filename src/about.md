@@ -1,17 +1,14 @@
 ---
-layout: default
-title: '11ty + Snowpack + tailwind starter kit :: About'
+layout: 'layouts/about.html'
+title: 'About'
+meta:
+  desc:
+    'A minimal starting point for building static websites with 11ty, powered by
+    Snowpack with Tailwind CSS.'
 ---
 
-<h1 class="text-4xl mb-4">
-  About
-</h1>
+# About
 
+A minimal starting point for building static websites with
 [11ty](https://www.11ty.dev/), powered by [Snowpack](https://www.snowpack.dev/)
-with [tailwindcss](https://tailwindcss.com).
-
-<br/>
-
-<a href="/" class="text-gray-500 underline">
-  Back to Home
-</a>
+with [Tailwind CSS](https://tailwindcss.com).
