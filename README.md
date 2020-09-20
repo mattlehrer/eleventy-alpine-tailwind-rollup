@@ -4,13 +4,14 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ec6da587-72ba-490a-ad4b-167802a9c197/deploy-status)](https://app.netlify.com/sites/11st-starter-kit/deploys)
 
 [11ty](https://www.11ty.dev/), powered by [Snowpack](https://www.snowpack.dev/)
-with [Tailwind CSS](https://tailwindcss.com).
+with [Tailwind CSS](https://tailwindcss.com) and
+[Alpine.js](https://github.com/alpinejs/alpine/).
 
 ## Install Dependencies
 
 First, make sure you have `npm` (packaged with
-[Node.js](https://nodejs.org)) installed, then run `npm i` to install the
-dependencies.
+[Node.js](https://nodejs.org)) installed, then run `npm run setup` to install
+the dependencies and validate that everything is running correctly.
 
 ## Available Scripts
 
@@ -23,21 +24,26 @@ npm start
 
 Open http://localhost:8080 to view it in the browser.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+The page will reload if you make file changes.
 
 ### Production
+
+To increase the production performance builds are optimized via
+[@snowpack/plugin-optimize](https://github.com/pikapkg/snowpack/tree/master/plugins/plugin-optimize).
 
 ```bash
 # builds a static copy of your site to the `dist/` folder.
 npm run build
 ```
 
-Your app is ready to be deployed!
+```bash
+# serve the content from the `dist/` folder.
+npm run serve
+```
 
-To increase the production performance
-[@snowpack/plugin-webpack](https://github.com/pikapkg/snowpack/tree/%40snowpack/app-template-11ty%401.7.4/packages/%40snowpack/plugin-webpack)
-is added to the `snowpack.config.json` config file.
+Open http://localhost:8080 to view it in the browser.
+
+Your code is now ready to be deployed!
 
 ## Netlify
 
@@ -47,6 +53,7 @@ Netlify very quickly, just click the button below and follow the instructions.
 [<img src="https://www.netlify.com/img/deploy/button.svg" />](https://app.netlify.com/start/deploy?repository=https://github.com/stefanfrede/11st-starter-kit)
 
 ### Add some Netlify helpers
+
 Netlify Dev adds the ability to use Netlify redirects, proxies, and serverless functions.
 
 ```bash
