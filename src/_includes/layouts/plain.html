@@ -16,15 +16,7 @@
 
     <link rel="stylesheet" href="/styles/index.css?{{ hash }}" />
   </head>
-  <body class="min-h-screen bg-gray-100">
-    <div class="min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
-      {% include "partials/site-head.html" %}
-
-      <main id="main-content" class="max-w-3xl mx-auto" tabindex="-1">
-        {% block content %}{% endblock %}
-      </main>
-    </div>
-
-    <script type="module" src="/_dist_/index.js"></script>
+  <body class="min-h-screen bg-white">
+    {% block content %}{% endblock %}
   </body>
 </html>
