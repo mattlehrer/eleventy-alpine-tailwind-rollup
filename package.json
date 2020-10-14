@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "12.x.x",
-    "npm": "7.x.x"
+    "npm": "6.x.x"
   },
   "main": "index.js",
   "repository": {
@@ -23,6 +23,7 @@
     "email": "stefan@frede.dev"
   },
   "license": "MIT",
+  "private": true,
   "bugs": {
     "url": "https://github.com/stefanfrede/11st-starter-kit/issues"
   },
@@ -44,19 +45,15 @@
   },
   "sideEffects": false,
   "scripts": {
-    "clean": "rimraf build && rimraf dist",
     "lighthouse": "lighthouse http://localhost:8080 --output=html --output-path=./report.html --view",
     "serve": "serve --no-clipboard --listen 8080 dist",
-    "test": "echo \"This template does not include a test runner by default.\" && exit 1",
-    "start": "run-s clean start:*",
-    "start:snowpack": "snowpack dev --open none",
-    "build": "run-s clean build:snowpack",
-    "build:snowpack": "snowpack build",
+    "dev": "snowpack dev",
+    "build": "snowpack build",
     "lint": "run-s lint:*",
-    "lint:eslint": "eslint --ext src/**/*.js,.html src/",
-    "lint:stylelint": "stylelint src/**/*.js src/**/*.html src/**/*.css src/**/*.scss",
+    "lint:eslint": "eslint --ext .js --ext .html src/",
+    "lint:stylelint": "stylelint src/**/*.js src/**/*.html src/**/*.css",
     "format": "run-s format:*",
-    "format:eslint": "eslint --ext src/**/*.js,.html src/ --fix",
+    "format:eslint": "eslint --ext .js --ext .html src/ --fix",
     "format:stylelint": "stylelint src/**/*.js src/**/*.html src/**/*.css --fix",
     "validate": "run-s build lint",
     "setup": "npm install && npm run validate"
@@ -65,16 +62,16 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "babel-eslint": "^10.1.0",
-    "browserslist": "^4.14.5",
+    "browserslist": "^4.14.6",
     "core-js": "^3.6.5",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-html": "^6.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
     "lighthouse": "^6.4.1",
-    "lint-staged": "^10.4.0",
+    "lint-staged": "^10.5.1",
     "prettier": "^2.1.2",
     "serve": "^11.3.2",
     "stylelint": "^13.7.2",
@@ -83,23 +80,22 @@
     "stylelint-order": "^4.1.0"
   },
   "dependencies": {
-    "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy": "^0.11.1",
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
-    "@snowpack/plugin-build-script": "^2.0.8",
-    "@snowpack/plugin-optimize": "^0.2.3",
-    "@snowpack/plugin-run-script": "^2.1.5",
+    "@snowpack/plugin-build-script": "^2.0.11",
+    "@snowpack/plugin-optimize": "^0.2.7",
+    "@snowpack/plugin-postcss": "^1.0.7",
+    "@snowpack/plugin-run-script": "^2.2.0",
     "@tailwindcss/typography": "^0.2.0",
-    "alpinejs": "^2.7.0",
+    "alpinejs": "^2.7.3",
     "autoprefixer": "^10.0.1",
     "canvas-confetti": "^1.3.0",
-    "liquidjs": "^9.15.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.1.1",
+    "postcss": "^8.1.4",
     "postcss-100vh-fix": "^1.0.2",
-    "postcss-cli": "^8.0.0",
-    "rimraf": "^3.0.2",
-    "snowpack": "^2.13.3",
-    "tailwindcss": "^1.8.11"
+    "postcss-cli": "^8.2.0",
+    "snowpack": "^2.16.1",
+    "tailwindcss": "^1.9.6"
   }
 }

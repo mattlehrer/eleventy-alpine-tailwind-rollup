@@ -1,29 +1,17 @@
-const { Liquid } = require('liquidjs');
-
-const liquidOptions = {
-  extname: '.liquid',
-  strict_filters: true,
-  root: ['_includes'],
-};
-
-const liquidEngine = new Liquid(liquidOptions);
-
 const fs = require('fs');
 
 module.exports = function (config) {
-  config.setLibrary('liquid', liquidEngine);
+  config.setLiquidOptions({
+    dynamicPartials: true,
+  });
 
   // Static assets to pass through
   config.addPassthroughCopy('./src/fonts');
   config.addPassthroughCopy('./src/images');
   config.addPassthroughCopy('./src/styles');
+  config.addPassthroughCopy('./src/favicon.ico');
   config.addPassthroughCopy('./src/manifest.json');
   config.addPassthroughCopy('./src/robots.txt');
-
-  config.addShortcode('hash', function () {
-    const uint32 = self.crypto.getRandomValues(new Uint32Array(1))[0];
-    return uint32.toString(16);
-  });
 
   // 404
   config.setBrowserSyncConfig({
