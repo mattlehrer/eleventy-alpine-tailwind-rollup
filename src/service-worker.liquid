@@ -1,7 +1,6 @@
 ---
 permalink: service-worker.js
 ---
-
 const VERSION = '{{ nanoid }}';
 
 const CACHE_KEYS = {
@@ -9,101 +8,78 @@ const CACHE_KEYS = {
   RUNTIME: `runtime-${VERSION}`,
 };
 
-// URLS that we don’t want to end up in the cache
+// Assets to cache
+const PRE_CACHE_URLS = {{ pre-cache-urls }};
+
+// Assets to exclude from caching
 const EXCLUDED_URLS = [];
 
-// URLS that we want to be cached when the worker is installed
-const PRE_CACHE_URLS = [
-  '/',
-  '/404.html',
-  '/index.html',
-  '/about/index.html',
-  '/contact/index.html',
-  '/favicon.ico',
-  '/images/social-share.png',
-  '/images/icons/favicon.svg',
-  '/images/icons/icon-72x72.png',
-  '/images/icons/icon-96x96.png',
-  '/images/icons/icon-128x128.png',
-  '/images/icons/icon-144x144.png',
-  '/images/icons/icon-152x152.png',
-  '/images/icons/icon-192x192.png',
-  '/images/icons/icon-384x384.png',
-  '/images/icons/icon-512x512.png',
-  '/images/icons/maskable_icon.png',
-  '/styles/index.css',
-];
-
-// You might want to bypass a certain host
+// Array of ignored hosts
 const IGNORED_HOSTS = ['localhost'];
 
-/**
- * Takes an array of strings and puts them in a named cache store
- *
- * @param {String} cacheName
- * @param {Array} items=[]
- */
-const addItemsToCache = function (cacheName, items = []) {
-  caches.open(cacheName).then((cache) => cache.addAll(items));
-};
-
-self.addEventListener('install', (e) => {
-  e.waitUntil(addItemsToCache(CACHE_KEYS.PRE_CACHE, PRE_CACHE_URLS));
+// On install—as a dependency
+// https://web.dev/offline-cookbook/#on-install-as-dependency
+self.addEventListener('install', function (event) {
+  event.waitUntil(
+    caches.open(CACHE_KEYS.PRE_CACHE).then(function (cache) {
+      return cache.addAll(PRE_CACHE_URLS);
+    }),
+  );
 });
 
-self.addEventListener('activate', (e) => {
-  // Look for any old caches that don't match our set and clear them out
-  e.waitUntil(
+// On activate
+// https://web.dev/offline-cookbook/#on-activate
+self.addEventListener('activate', function (event) {
+  event.waitUntil(
     caches
       .keys()
-      .then((cacheNames) => {
-        return cacheNames.filter(
-          (item) => !Object.values(CACHE_KEYS).includes(item),
-        );
+      .then(function (cacheNames) {
+        return cacheNames.filter(function (item) {
+          return !Object.values(CACHE_KEYS).includes(item);
+        });
       })
-      .then((itemsToDelete) => {
+      .then(function (itemsToDelete) {
         return Promise.all(
-          itemsToDelete.map((item) => {
+          itemsToDelete.map(function (item) {
             return caches.delete(item);
           }),
         );
       })
-      .then(() => self.clients.claim()),
+      .then(function () {
+        return self.clients.claim();
+      }),
   );
 });
 
-self.addEventListener('fetch', (e) => {
-  const { hostname } = new URL(e.request.url);
+// A combination of `Cache, falling back to network` and `Cache then network`
+// https://web.dev/offline-cookbook/#cache-falling-back-to-network
+// https://web.dev/offline-cookbook/#cache-then-network
+self.addEventListener('fetch', function (event) {
+  const { hostname } = new URL(event.request.url);
 
-  // Check we don't want to ignore this host
   if (IGNORED_HOSTS.indexOf(hostname) >= 0) {
     return;
   }
 
-  // Check we don't want to ignore this URL
-  if (EXCLUDED_URLS.some((page) => e.request.url.indexOf(page) > -1)) {
+  const getPageUrl = function (url) {
+    return event.request.url.indexOf(url) > -1;
+  };
+
+  if (EXCLUDED_URLS.some(getPageUrl)) {
     return;
   }
 
-  e.respondWith(
-    caches.match(e.request).then((cachedResponse) => {
-      // Item found in cache so return
-      if (cachedResponse) {
-        return cachedResponse;
+  event.respondWith(
+    caches.match(event.request).then(function (response) {
+      if (response) {
+        return response;
       }
 
-      // Nothing found so load up the request from the network
-      return caches.open(CACHE_KEYS.RUNTIME).then((cache) => {
-        return fetch(e.request)
-          .then((response) => {
-            // Put the new response in cache and return it
-            return cache.put(e.request, response.clone()).then(() => {
-              return response;
-            });
-          })
-          .catch(() => {
-            return;
-          });
+      return caches.open(CACHE_KEYS.RUNTIME).then(function (cache) {
+        return fetch(event.request).then(function (response) {
+          cache.put(event.request, response.clone());
+          return response;
+        });
       });
     }),
   );
