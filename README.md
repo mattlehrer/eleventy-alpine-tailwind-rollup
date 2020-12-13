@@ -43,11 +43,6 @@ npm run serve
 
 Open http://localhost:8080 to view it in the browser.
 
-```bash
-# get your lighthouse scores.
-npm run lighthouse
-```
-
 Your code is now ready to be deployed!
 
 ## Netlify
@@ -68,6 +63,16 @@ npm install -g netlify-cli
 # run a local server with some added Netlify sugar
 netlify dev
 ```
+
+## Code Quality
+
+By default `CSS` and `JavaScript` is getting linted with every commit.
+
+You can lint manually by running `npm run lint` and if errors occur you can try to fix them automatically by running `npm run format`.
+
+With every pull request it is checked if the code can be build without errors and afterwards `CSS` and `JavaScript` is getting linted.
+
+Additionally each page is audited by Lighthouse which can take some time. You can find the performance budget for this audit in the file `./budget.json`.
 
 ## License
 
