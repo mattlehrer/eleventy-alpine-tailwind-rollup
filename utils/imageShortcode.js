@@ -25,7 +25,7 @@ async function imageShortcode(src, alt, classList, sizes) {
     ],
     formats: isOnNetlify ? ['avif', 'webp', null] : [null],
     svgShortCircuit: true,
-    outputDir: '_site/images/',
+    outputDir: 'dist/images/',
     urlPath: '/images/',
   });
 

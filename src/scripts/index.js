@@ -1,4 +1,4 @@
-import 'alpinejs';
+import '../styles/index.css';
 
 const env = document.querySelector('body').dataset.env;
 

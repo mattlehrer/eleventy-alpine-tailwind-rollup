@@ -3,8 +3,8 @@
   <head>
     {% include "../components/head.njk" %}
     <title>{{ title }}</title>
-    <link rel="stylesheet" type="text/css" href="/styles/index.css" />
-    <script type="module" src="/scripts/turbolinks.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/assets/index.bundle.css" />
+		<script type="module" src="/assets/index.bundle.js" defer></script>
   </head>
   <body
     class="grid min-h-screen grid-cols-1 grid-rows-layout dark:bg-gray-800 dark:text-gray-50 max-w-6xl mx-auto {{ 'debug-screens' if env.dev }}"
@@ -16,7 +16,5 @@
       </main>
     </div>
     {% include "../components/footer.njk" %}
-
-    <script type="module" src="/scripts/index.js" defer></script>
   </body>
 </html>

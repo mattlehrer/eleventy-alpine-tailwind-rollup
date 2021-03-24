@@ -23,31 +23,31 @@
       { width = 1920, height = 1080 }
     ]
 
-[[plugins]]
-package = "netlify-plugin-subfont"
+# [[plugins]]
+# package = "netlify-plugin-subfont"
 
-  [plugins.inputs]
-  # An array of glob patterns for pages on your site
-  # Recursive traversal will start from these
-  entryPoints = [
-    "*.html",
-  ]
+#   [plugins.inputs]
+#   # An array of glob patterns for pages on your site
+#   # Recursive traversal will start from these
+#   entryPoints = [
+#     "*.html",
+#   ]
 
-  # Follow your links across all pages to optimize the fonts across the entire site
-  recursive = true
+#   # Follow your links across all pages to optimize the fonts across the entire site
+#   recursive = true
 
-  # Subfont lets you set CSS font-display value of the optimized subsets
-  # See https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
-  fontDisplay = "swap"
+#   # Subfont lets you set CSS font-display value of the optimized subsets
+#   # See https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
+#   fontDisplay = "swap"
 
-  # Inline generated CSS @font-face blocks into each page
-  # When set to `false` an external CSS file will be created
-  inlineCss = false
+#   # Inline generated CSS @font-face blocks into each page
+#   # When set to `false` an external CSS file will be created
+#   inlineCss = false
 
-  # Inline generated font subsets into their respective @font-face blocks
-  # When set to `false` external font files will be created
-  inlineFonts = false
+#   # Inline generated font subsets into their respective @font-face blocks
+#   # When set to `false` external font files will be created
+#   inlineFonts = false
 
-  # Include fallbacks so the original font will be loaded when dynamic content gets injected at runtime
-  # When set to `false` external font files will be created
-  fallbacks = true
+#   # Include fallbacks so the original font will be loaded when dynamic content gets injected at runtime
+#   # When set to `false` external font files will be created
+#   fallbacks = true
