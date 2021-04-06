@@ -7,7 +7,7 @@ module.exports = {
         'nesting-rules': true,
       },
     },
-    '@tailwindcss/jit': {},
+    tailwindcss: {},
     autoprefixer: {},
   },
 };
