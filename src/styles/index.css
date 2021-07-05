@@ -6,6 +6,10 @@
   @apply outline-none ring-2 ring-gray-800 dark:ring-gray-100 ring-offset-2 dark:ring-offset-gray-800 rounded-sm border-transparent no-underline;
 }
 
+[x-cloak] {
+  display: none !important;
+}
+
 h1,
 h2,
 h3,
