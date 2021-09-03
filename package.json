@@ -54,7 +54,7 @@
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@tailwindcss/typography": "^0.4.1",
-    "autoprefixer": "^10.2.6",
+    "autoprefixer": "^10.3.4",
     "babel-eslint": "^10.1.0",
     "browserslist": "^4.16.6",
     "cross-env": "^7.0.3",
