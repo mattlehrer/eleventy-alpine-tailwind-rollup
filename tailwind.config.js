@@ -1,7 +1,5 @@
 module.exports = {
-  mode: 'jit',
-  purge: ['./src/**/*.{html,css,md,njk}'],
-  darkMode: 'media',
+  content: ['./src/**/*.{html,css,md,njk}'],
   theme: {
     extend: {
       gridTemplateRows: {
@@ -106,7 +104,6 @@ module.exports = {
       }),
     },
   },
-  variants: {},
   plugins: [
     require('@tailwindcss/typography'),
     require('tailwindcss-debug-screens'),
