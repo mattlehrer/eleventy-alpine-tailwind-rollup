@@ -40,10 +40,6 @@ module.exports = function (eleventyConfig) {
     return categories;
   });
 
-  // future default and makes intuitive sense
-  // https://www.11ty.dev/docs/data-deep-merge/
-  eleventyConfig.setDataDeepMerge(true);
-
   // 404
   eleventyConfig.setBrowserSyncConfig({
     files: ['dist/**/*', 'src/styles/*', 'src/scripts/*'],
